@@ -1,0 +1,42 @@
+<div class="row gutter-t gutter-b">
+    <div class="card card-custom border-primary">
+        <div class="card-header mt-3">
+            <div class="card-title align-items-center">
+                <i class="flaticon-etiqueta icon-2x text-primary mr-3"></i>
+                <h2 class="text-primary m-0">Lista de pokemons</h2>
+            </div>
+            <div class="card-toolbar ml-auto">
+                <div class="d-flex align-items-center flex-grow-1 mb-3">
+                </div>
+                <button [routerLink]="['/favorites']" type="button" class="btn btn-outline-info">
+                    Lista de favoritos <i class="fa-solid fa-star"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-striped mt-2 table-vertical-center">
+                    <thead>
+                        <tr class="">
+                            <th class="text-center">ID Vacante</th>
+                            <th>Nombre</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let pokemon of pokemons; let i = index">
+                            <td class="text-center">{{i}}</td>
+                            <td>{{pokemon.name}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-end align-items-center flex-wrap">
+                    <!-- <el-caption #paginator
+                        [registerQuantity]="filteredList.enable && filteredList.records.length>0 ? filteredList.records.length :Vacancies.length"
+                        [records]="filteredList.enable ? filteredList.records : Vacancies"
+                        (onChage)="getPaginatedRecords($event)"></el-caption> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
