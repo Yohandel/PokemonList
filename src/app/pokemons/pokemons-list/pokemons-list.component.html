@@ -24,17 +24,20 @@
                             <th class="text-center">Nombre</th>
                             <th class="text-center">Capturar</th>
                         </tr>
-                    </thead>
+                    </thead> 
 
                     <tbody>
                         <tr *ngFor="let pokemon of pokemons; let i = index">
                             <td class="text-center text-secondary h5">{{i}}</td>
                             <td class="text-center text-secondary h5">{{pokemon.name}}</td>
                             <td class="text-center">
-                                <a type="button" class="icon-pk" data-bs-toggle="tooltip" data-bs-placement="top" title="Captura al Pokemon">
-                                    <img src="./assets/svg/pokemon_go_play_game_cinema_film_movie_4_icon-icons.com_69161.svg" alt="">
+                                <a (click)="setFavorite(pokemon)" *ngIf="!pokemon.isFavorite" type="button" class="icon-pk" data-bs-toggle="tooltip" data-bs-placement="top" title="Captura al Pokemon">
+                                    <img src="assets/svg/pokemon_go_play_game_cinema_film_movie_4_icon-icons.com_69161.svg" alt="">
                                 </a>
-                        </td>
+                                <a (click)="deleteFavorite(pokemon)" *ngIf="pokemon.isFavorite" type="button" class="icon-pk icon-pk-captured" data-bs-toggle="tooltip" data-bs-placement="top" title="Captura al Pokemon">
+                                    <img src="assets/svg/pokemon_go_play_game_cinema_film_movie_4_icon-icons.com_69161.svg" alt="">
+                                </a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

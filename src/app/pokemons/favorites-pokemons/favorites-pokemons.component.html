@@ -9,7 +9,7 @@
                 <div class="card-toolbar ml-auto">
                     <div class="d-flex align-items-center flex-grow-1 mb-3">
                     </div>
-                    <button [routerLink]="['/pokemons-lis']" type="button" class="btn btn-outline-danger ">
+                    <button [routerLink]="['/']" type="button" class="btn btn-outline-danger ">
                         Lista de Pokemons
                     </button>
                 </div>
@@ -22,20 +22,24 @@
                         <tr class="">
                             <th class="text-center ">Secuencia</th>
                             <th class="text-center">Nombre</th>
+                            <th class="text-center">Alias</th>
+                            <th class="text-center">Fecha</th>
                             <th class="text-center">Acciones</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td class="text-center text-secondary h5"> 1</td>
-                            <td class="text-center text-secondary h5">Bulbasor</td>
+                        <tr *ngFor="let pokemon of favorites; let i = index">
+                            <td class="text-center text-secondary h5"> {{i}}</td>
+                            <td class="text-center text-secondary h5">{{pokemon.name}}</td>
+                            <td class="text-center text-secondary h5">{{pokemon.alias}}</td>
+                            <td class="text-center text-secondary h5">{{pokemon.createdAt | date}}</td>
                             <td class="text-center">
                                 <div class="d-flex gap-2 justify-content-center">
-                                    <a type="button" class="icon-actions btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
+                                    <a type="button" class="icon-actions btn btn-warning" data-toggle="modal" data-target="#exampleModal" title="Editar">
                                     <img src="/assets/svg/edit.svg" alt="">
                                     </a>
-                                    <a type="button" class="icon-actions btn btn-danger " data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar">
+                                    <a (click)="deleteFavorite(pokemon)" type="button" class="icon-actions btn btn-danger " data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar">
                                         <img src="/assets/svg/trash.svg" alt="">
                                     </a>
                                 </div>
@@ -53,3 +57,22 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
