@@ -1,1 +1,39 @@
-/* You can add global styles to this file, and also import other style files */
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+.icon-pk{
+    background-color: #fffdfd;
+    border-radius: 160px;
+}
+
+.icon-pk:hover{
+    background-color: #dc3546d5;
+}
+
+.icon-pk-captured{
+    background-color: #dc3546d5;
+}
+
+.icon-actions{
+    padding: 0rem 0.1rem !important;
+}
+
+.icon-pk:active {
+    color: red;
+  }
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.87); 
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.239);
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #dc3545;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}

@@ -1,1 +1,78 @@
-<p>favorites-pokemons works!</p>
+<div class="row gutter-t gutter-b p-5">
+    <div class="card card-custom shadow">
+        <div class="card-header mt-3 mx-3 bg-dark">
+            <div class="my-3">
+                <div class="card-title align-items-center ">
+                    <i class="flaticon-etiqueta icon-2x text-primary mr-3"></i>
+                    <h2 class="text-white m-0 title-text fs-1">Pokemons</h2>
+                </div>
+                <div class="card-toolbar ml-auto">
+                    <div class="d-flex align-items-center flex-grow-1 mb-3">
+                    </div>
+                    <button [routerLink]="['/']" type="button" class="btn btn-outline-danger ">
+                        Lista de Pokemons
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body py-1">
+            <div class="table-responsive">
+                <table class="table table-striped mt-2 table-vertical-center table-hover" >
+                    <thead class="table-dark">
+                        <tr class="">
+                            <th class="text-center ">Secuencia</th>
+                            <th class="text-center">Nombre</th>
+                            <th class="text-center">Alias</th>
+                            <th class="text-center">Fecha</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let pokemon of favorites; let i = index">
+                            <td class="text-center text-secondary h5"> {{i}}</td>
+                            <td class="text-center text-secondary h5">{{pokemon.name}}</td>
+                            <td class="text-center text-secondary h5">{{pokemon.alias}}</td>
+                            <td class="text-center text-secondary h5">{{pokemon.createdAt | date}}</td>
+                            <td class="text-center">
+                                <div class="d-flex gap-2 justify-content-center">
+                                    <a type="button" class="icon-actions btn btn-warning" data-toggle="modal" data-target="#exampleModal" title="Editar">
+                                    <img src="/assets/svg/edit.svg" alt="">
+                                    </a>
+                                    <a (click)="deleteFavorite(pokemon)" type="button" class="icon-actions btn btn-danger " data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar">
+                                        <img src="/assets/svg/trash.svg" alt="">
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-end align-items-center flex-wrap">
+                    <!-- <el-caption #paginator
+                        [registerQuantity]="filteredList.enable && filteredList.records.length>0 ? filteredList.records.length :Vacancies.length"
+                        [records]="filteredList.enable ? filteredList.records : Vacancies"
+                        (onChage)="getPaginatedRecords($event)"></el-caption> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
