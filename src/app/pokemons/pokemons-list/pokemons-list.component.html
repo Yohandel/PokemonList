@@ -20,6 +20,7 @@
                         <tr class="">
                             <th class="text-center">ID Vacante</th>
                             <th>Nombre</th>
+                            <th></th>
                         </tr>
                     </thead>
 
@@ -27,6 +28,10 @@
                         <tr *ngFor="let pokemon of pokemons; let i = index">
                             <td class="text-center">{{i}}</td>
                             <td>{{pokemon.name}}</td>
+                            <td>
+                                <button *ngIf="!pokemon.isFavorite" class="btn btn-warning" (click)="setFavorite(pokemon)">Fav</button>
+                                <button *ngIf="pokemon.isFavorite" class="btn btn-danger" (click)="deleteFavorite(pokemon)">DeFav</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
