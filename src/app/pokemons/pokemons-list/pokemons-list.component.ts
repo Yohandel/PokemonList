@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IFavorites, IPokemon } from 'src/app/services/interfaces';
 import { PokemonsServiceService } from 'src/app/services/pokemons-service.service';
@@ -11,7 +11,12 @@ declare const $: any;
 })
 export class PokemonsListComponent implements OnInit {
   pokemons: IPokemon[] = []
+  pokemonsCopy: IPokemon[] = [];
   isInvalid:boolean = false
+
+  public p = 1;
+  public searchKey;
+  public oldSearchKey;
 
   favoriteForm: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -28,7 +33,7 @@ export class PokemonsListComponent implements OnInit {
   getData() {
     this._pokemonService.getPokemonList().subscribe((data: any) => {
       this.pokemons = data.results;
-
+      this.pokemonsCopy = [...data.results];
       this.getFavorites();
 
     })
@@ -46,6 +51,8 @@ export class PokemonsListComponent implements OnInit {
         }
       })
     })
+
+    this.resetForm();
   }
 
  
@@ -59,8 +66,7 @@ export class PokemonsListComponent implements OnInit {
 
       if (response) {
         this.getFavorites();
-        alert('Pokemon eliminado')
-
+        //alert('Pokemon eliminado')
 
       } else {
         console.log('Pokemon no se pudo eliminar')
@@ -71,7 +77,9 @@ export class PokemonsListComponent implements OnInit {
 
   setFavorite(item) {
     this.favoriteForm.patchValue(item);
+    this.favoriteForm.controls.createdAt.setValue(new Date());
     console.log(item)
+    console.log(this.favoriteForm.value)
   }
 
 
@@ -87,18 +95,45 @@ export class PokemonsListComponent implements OnInit {
     let response = this._pokemonService.addToFavorites(this.favoriteForm.value);
  
      if(response){
-      //  $('#addFavoritePokemon').modal('hide');
+      $('#btn-close-model').click(); 
        this.getFavorites();
-       alert('Pokemon Agregado')
- 
+       //alert('Pokemon Agregado')
+       //this.btnClose.nativeElement.click()
      }else{
-       console.log('Pokemon no se pudo agregar')
+       alert('Pokemon no se pudo agregar')
      }
   }
 
   resetForm(){
     this.isInvalid = false
     this.favoriteForm.reset()
+  }
+
+  fillData() {
+    this.pokemons = this.pokemonsCopy
+  }
+
+  searchOn() {
+
+    if (this.searchKey == this.oldSearchKey) {
+      return;
+    }
+
+    this.fillData();
+
+    if (!this.searchKey) {
+      
+      return;
+    }
+
+    this.oldSearchKey = this.searchKey;
+
+    this.pokemons = this.pokemons.filter(x=>{
+      if (x?.name.toLowerCase().trim().includes(this.searchKey.toString().toLowerCase().trim())) {
+        return true;
+      }
+    });
+
   }
 
 
