@@ -12,10 +12,11 @@ declare const $: any;
 export class FavoritesPokemonsComponent implements OnInit {
 
   favorites:IFavorites[] = []
+  isInvalid:boolean = false
 
   favoriteForm: FormGroup = new FormGroup({
     name: new FormControl('',Validators.required),
-    alias: new FormControl(''),
+    alias: new FormControl('', Validators.required),
     createdAt: new FormControl(new Date(),Validators.required),
   });
 
@@ -38,19 +39,26 @@ export class FavoritesPokemonsComponent implements OnInit {
     console.log(this.favoriteForm.value)
     
     if(!this.favoriteForm.valid){
+      this.isInvalid = true
       return;
     }
- 
+    
+    this.isInvalid = false
     let response = this._pokemonService.editFavorite(this.favoriteForm.get('name').value, this.favoriteForm.get('alias').value);
  
      if(response){
-       $('#editFavoritePokemon').modal('hide');
        this.getFavorites();
+       this.resetForm()
        alert('Pokemon Editado')
  
      }else{
        console.log('Pokemon no se pudo editar')
      }
+  }
+
+  resetForm(){
+    
+    this.favoriteForm.reset()
   }
 
   deleteFavorite(item){

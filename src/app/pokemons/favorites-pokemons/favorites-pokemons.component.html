@@ -68,7 +68,7 @@ aria-hidden="true">
 <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header bg-dark">
-            <h5 class="modal-title text-white m-0 title-text fs-1" id="exampleModalLabel">Edita el alias de
+            <h5 class="modal-title text-white m-0 title-text fs-3" id="exampleModalLabel">Edita el alias de
                 {{favoriteForm.value.name}}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal"
                 aria-label="Close"></button>
@@ -78,12 +78,14 @@ aria-hidden="true">
                 <label for="aliasInput" class="form-label">Digita el nuevo alias</label>
                 <input class="form-control" formControlName="alias" id="aliasInput"
                     placeholder="Alias..." type="text">
+                    <span *ngIf="isInvalid" class="font-weight-bold text-danger">Este campo es obligatorio</span>
             </form>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-danger" (click)="editFavoriteAlias()" >Save changes</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="resetForm()">Cerrar</button>
+            <button [disabled]="favoriteForm.invalid" type="button" class="btn btn-danger" (click)="editFavoriteAlias()" >Guardar cambios</button>
         </div>
+        
     </div>
 </div>
 </div>
