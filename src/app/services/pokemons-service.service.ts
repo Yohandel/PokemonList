@@ -12,7 +12,7 @@ export class PokemonsServiceService {
   constructor(private _http: HttpClient) { }
 
   getPokemonList(){
-   return this._http.get(`${this.url}/pokemon`)
+   return this._http.get(`${this.url}/pokemon?limit=1500&offset=0`)
   }
 
   getFavoritesList(): IFavorites[] {

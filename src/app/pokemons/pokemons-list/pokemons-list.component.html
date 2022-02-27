@@ -19,6 +19,24 @@
                     </button>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <input class="form-control search-bar" type="text" placeholder="..." aria-label="Search" [(ngModel)]="searchKey" (keyup.enter)="searchOn()">
+                        <div class="input-group-append ">
+                            <button type="button"
+                            class="btn btn-outline-danger shadow-custom-1 pl-3" (click)="searchOn()">
+            
+                                BUSCAR
+                            </button>
+                            
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>
+            </div>
         </div>
         <div class="card-body py-0">
             <div class="table-responsive">
@@ -32,7 +50,7 @@
                     </thead>
 
                     <tbody>
-                        <tr class="align-middle" *ngFor="let pokemon of pokemons; let i = index ">
+                        <tr class="align-middle" *ngFor="let pokemon of (pokemons | paginate: { itemsPerPage: 10, currentPage: p }); let i = index">
                             <td class="text-center text-secondary h5">{{i}}</td>
                             <td class="text-center text-secondary h5 ">{{pokemon.name}}</td>
                             <td class="d-flex justify-content-center">
@@ -55,10 +73,8 @@
 
               
                 <div class="d-flex justify-content-end align-items-center flex-wrap">
-                    <!-- <el-caption #paginator
-                        [registerQuantity]="filteredList.enable && filteredList.records.length>0 ? filteredList.records.length :Vacancies.length"
-                        [records]="filteredList.enable ? filteredList.records : Vacancies"
-                        (onChage)="getPaginatedRecords($event)"></el-caption> -->
+                    <pagination-controls previousLabel="<<"
+                    nextLabel=">>" (pageChange)="p = $event"></pagination-controls>
                 </div>
             </div>
         </div>
@@ -84,7 +100,7 @@ aria-hidden="true">
             </form>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="resetForm()">Cerrar</button>
+            <button id="btn-close-model" type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="resetForm()">Cerrar</button>
             <button [disabled]="favoriteForm.invalid"  type="button" class="btn btn-danger" (click)="saveFavorite()">Guardar Favorito</button>
         </div>
     </div>

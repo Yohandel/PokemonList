@@ -12,7 +12,12 @@ declare const $: any;
 export class FavoritesPokemonsComponent implements OnInit {
 
   favorites:IFavorites[] = []
+  favoritesCopy:IFavorites[] = []
   isInvalid:boolean = false
+
+  public p = 1;
+  public searchKey;
+  public oldSearchKey;
 
   favoriteForm: FormGroup = new FormGroup({
     name: new FormControl('',Validators.required),
@@ -28,6 +33,7 @@ export class FavoritesPokemonsComponent implements OnInit {
 
   getFavorites(){
     this.favorites = this._pokemonService.getFavoritesList();
+    this.favoritesCopy = [...this.favorites];
   }
 
   getFavorite(pokemon){
@@ -49,10 +55,10 @@ export class FavoritesPokemonsComponent implements OnInit {
      if(response){
        this.getFavorites();
        this.resetForm()
-       alert('Pokemon Editado')
+       $('#btn-close-model').click(); 
  
      }else{
-       console.log('Pokemon no se pudo editar')
+      alert('Pokemon no se pudo editar')
      }
   }
 
@@ -70,7 +76,6 @@ export class FavoritesPokemonsComponent implements OnInit {
   
       if(response){
         this.getFavorites();
-        alert('Pokemon eliminado')
   
       }else{
         console.log('Pokemon no se pudo eliminar')
@@ -79,6 +84,37 @@ export class FavoritesPokemonsComponent implements OnInit {
     else{
       return
     }
+
+  }
+
+  fillData() {
+    this.favorites = this.favoritesCopy
+  }
+
+  searchOn() {
+
+    if (this.searchKey == this.oldSearchKey) {
+      return;
+    }
+
+    this.fillData();
+
+    if (!this.searchKey) {
+      
+      return;
+    }
+
+    this.oldSearchKey = this.searchKey;
+
+    this.favorites = this.favorites.filter(x=>{
+      if (x?.name.toLowerCase().trim().includes(this.searchKey.toString().toLowerCase().trim())) {
+        return true;
+      }
+
+      if (x?.alias.toLowerCase().trim().includes(this.searchKey.toString().toLowerCase().trim())) {
+        return true;
+      }
+    });
 
   }
 
