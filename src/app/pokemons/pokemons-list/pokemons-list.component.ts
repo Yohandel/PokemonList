@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IFavorites, IPokemon } from 'src/app/services/interfaces';
 import { PokemonsServiceService } from 'src/app/services/pokemons-service.service';
+declare const $: any;
 
 @Component({
   selector: 'app-pokemons-list',
@@ -54,8 +55,9 @@ export class PokemonsListComponent implements OnInit {
     let response = this._pokemonService.deleteFromFavorites(this.favoriteForm.controls.name.value);
 
     if(response){
-      console.log('Pokemon eliminado')
       this.getFavorites();
+      alert('Pokemon eliminado')
+      
 
     }else{
       console.log('Pokemon no se pudo eliminar')
@@ -64,21 +66,27 @@ export class PokemonsListComponent implements OnInit {
 
   setFavorite(item){
    this.favoriteForm.patchValue(item);
-
-   if(!this.favoriteForm.valid){
-     return;
-   }
-
-   let response = this._pokemonService.addToFavorites(this.favoriteForm.value);
-
-    if(response){
-      console.log('Pokemon Agregado')
-      this.getFavorites();
-
-    }else{
-      console.log('Pokemon no se pudo agregar')
+   console.log(item)
+  }
+  
+  
+  saveFavorite(){
+    console.log(this.favoriteForm.value)
+    
+    if(!this.favoriteForm.valid){
+      return;
     }
-
-  } 
+ 
+    let response = this._pokemonService.addToFavorites(this.favoriteForm.value);
+ 
+     if(response){
+       $('#addFavoritePokemon').modal('hide');
+       this.getFavorites();
+       alert('Pokemon Agregado')
+ 
+     }else{
+       console.log('Pokemon no se pudo agregar')
+     }
+  }
 
 }
