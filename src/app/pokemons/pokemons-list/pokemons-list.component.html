@@ -38,13 +38,14 @@
                             <td class="d-flex justify-content-center">
                                 <a (click)="setFavorite(pokemon)" *ngIf="!pokemon.isFavorite" type="button" class="icon-pk" data-bs-toggle="modal" data-bs-target="#addFavoritePokemon">
                                     <div class="pokeball2">
-                                        <div class="pokeball__button2 "></div>
+                                        <div class="pokeball__button2 " data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="Captura al Pokémon"></div>
                                     </div>
                                 </a>
                                 <a (click)="deleteFavorite(pokemon)" *ngIf="pokemon.isFavorite" type="button" class="icon-pk" data-bs-toggle="tooltip" data-bs-placement="top"
-                                    title="Captura al Pokémon">
-                                    <div class="pokeball2">
-                                        <div class="pokeball__button2 "></div>
+                                    title="Libera al Pokémon">
+                                    <div class="pokeball2 pokeball2-active">
+                                        <div class=" pokeball__button2 "></div>
                                     </div>
                                 </a>
                             </td>
