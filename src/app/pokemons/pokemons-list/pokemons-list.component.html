@@ -34,17 +34,15 @@
                     <tbody>
                         <tr class="align-middle" *ngFor="let pokemon of pokemons; let i = index ">
                             <td class="text-center text-secondary h5">{{i}}</td>
-                            <td class="text-center text-secondary h5">{{pokemon.name}}</td>
-                            <td class="text-center">
-                                <a (click)="setFavorite(pokemon)" *ngIf="!pokemon.isFavorite" type="button"
-                                    class="icon-pk" data-bs-toggle="modal" data-bs-target="#addFavoritePokemon">
+                            <td class="text-center text-secondary h5 ">{{pokemon.name}}</td>
+                            <td class="d-flex justify-content-center">
+                                <a (click)="setFavorite(pokemon)" *ngIf="!pokemon.isFavorite" type="button" class="icon-pk" data-bs-toggle="modal" data-bs-target="#addFavoritePokemon">
                                     <div class="pokeball2">
                                         <div class="pokeball__button2 "></div>
                                     </div>
                                 </a>
-                                <a (click)="deleteFavorite(pokemon)" *ngIf="pokemon.isFavorite" type="button"
-                                    class="icon-pk icon-pk-captured" data-bs-toggle="tooltip" data-bs-placement="top"
-                                    title="Captura al Pokemon">
+                                <a (click)="deleteFavorite(pokemon)" *ngIf="pokemon.isFavorite" type="button" class="icon-pk" data-bs-toggle="tooltip" data-bs-placement="top"
+                                    title="Captura al Pokémon">
                                     <div class="pokeball2">
                                         <div class="pokeball__button2 "></div>
                                     </div>
