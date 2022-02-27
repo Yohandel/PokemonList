@@ -80,7 +80,7 @@ export class PokemonsListComponent implements OnInit {
     let response = this._pokemonService.addToFavorites(this.favoriteForm.value);
  
      if(response){
-       $('#addFavoritePokemon').modal('hide');
+      //  $('#addFavoritePokemon').modal('hide');
        this.getFavorites();
        alert('Pokemon Agregado')
  
