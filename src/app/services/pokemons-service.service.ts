@@ -52,6 +52,33 @@ export class PokemonsServiceService {
 
     return true;
   }
+  editFavorite(name:string, alias:string): boolean {
+
+    try {
+      let items: any[] = this.getFavoritesList();
+
+      let isThere = items.find(x => x.name == name);
+
+      if (isThere == false) {
+        return false;
+      }
+
+      for(let i = 0; i<items.length; i++){
+        if(items[i].name == name){
+          items[i].alias = alias
+          break;
+        }
+      }
+
+      sessionStorage.setItem('favorites', JSON.stringify(items))
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
+
+
+    return true;
+  }
 
   addToFavorites(item: IFavorites): boolean {
 
