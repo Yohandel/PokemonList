@@ -34,10 +34,17 @@
                     <tbody>
                         <tr class="align-middle" *ngFor="let pokemon of pokemons; let i = index ">
                             <td class="text-center text-secondary h5">{{i}}</td>
-                            <td class="text-center text-secondary h5 ">{{pokemon.name}}</td>
-                            <td class="d-flex justify-content-center">
-                                <a type="button" class="icon-pk" data-bs-toggle="tooltip" data-bs-placement="top"
-                                    title="Captura al Pokémon">
+                            <td class="text-center text-secondary h5">{{pokemon.name}}</td>
+                            <td class="text-center">
+                                <a (click)="setFavorite(pokemon)" *ngIf="!pokemon.isFavorite" type="button"
+                                    class="icon-pk" data-bs-toggle="modal" data-bs-target="#addFavoritePokemon">
+                                    <div class="pokeball2">
+                                        <div class="pokeball__button2 "></div>
+                                    </div>
+                                </a>
+                                <a (click)="deleteFavorite(pokemon)" *ngIf="pokemon.isFavorite" type="button"
+                                    class="icon-pk icon-pk-captured" data-bs-toggle="tooltip" data-bs-placement="top"
+                                    title="Captura al Pokemon">
                                     <div class="pokeball2">
                                         <div class="pokeball__button2 "></div>
                                     </div>
@@ -46,6 +53,32 @@
                         </tr>
                     </tbody>
                 </table>
+
+                <div class="modal fade" id="addFavoritePokemon" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header bg-dark">
+                                <h5 class="modal-title text-white m-0 title-text fs-1" id="exampleModalLabel">Atrapa a
+                                    {{favoriteForm.value.name}}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form [formGroup]="favoriteForm">
+                                    <label for="aliasInput" class="form-label">Guardalo con un alias</label>
+                                    <input class="form-control" formControlName="alias" id="aliasInput"
+                                        placeholder="Alias..." type="text">
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger" (click)="saveFavorite()">Save
+                                    changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="d-flex justify-content-end align-items-center flex-wrap">
                     <!-- <el-caption #paginator
                         [registerQuantity]="filteredList.enable && filteredList.records.length>0 ? filteredList.records.length :Vacancies.length"

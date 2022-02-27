@@ -60,3 +60,27 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="editFavoritePokemon" tabindex="-1" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header bg-dark">
+            <h5 class="modal-title text-white m-0 title-text fs-1" id="exampleModalLabel">Edita el alias de
+                {{favoriteForm.value.name}}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="favoriteForm">
+                <label for="aliasInput" class="form-label">Digita el nuevo alias</label>
+                <input class="form-control" formControlName="alias" id="aliasInput"
+                    placeholder="Alias..." type="text">
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-danger" (click)="editFavoriteAlias()" >Save changes</button>
+        </div>
+    </div>
+</div>
+</div>

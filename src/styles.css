@@ -17,8 +17,17 @@ body {
   color: #000 !important;
 }
 
+<<<<<<< HEAD
 .table-striped > tbody > tr:nth-of-type(odd) > * {
   --bs-table-accent-bg: none;
+=======
+.icon-pk-captured{
+    background-color: #dc3546d5;
+}
+
+.icon-actions{
+    padding: 0rem 0.1rem !important;
+>>>>>>> 9b6432661f58b8edfb85a578409a3118013c5b60
 }
 
 .shadow-custom-1 {
