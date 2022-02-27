@@ -53,7 +53,7 @@
                     </thead>
 
                     <tbody>
-                        <tr *ngFor="let pokemon of (favorites | paginate: { itemsPerPage: 10, currentPage: p }); let i = index">
+                        <tr class="align-middle" *ngFor="let pokemon of (favorites | paginate: { itemsPerPage: 10, currentPage: p }); let i = index">
                             <td class="text-center text-secondary h5"> {{i}}</td>
                             <td class="text-center text-secondary h5">{{pokemon.name}}</td>
                             <td class="text-center text-secondary h5">{{pokemon.alias}}</td>
