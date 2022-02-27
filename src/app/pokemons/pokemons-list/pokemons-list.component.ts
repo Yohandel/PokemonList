@@ -85,15 +85,15 @@ export class PokemonsListComponent implements OnInit {
 
     this.isInvalid = false
     let response = this._pokemonService.addToFavorites(this.favoriteForm.value);
-
-    if (response) {
-      this.resetForm()
-      this.getFavorites();
-      alert('Pokemon Agregado')
-
-    } else {
-      console.log('Pokemon no se pudo agregar')
-    }
+ 
+     if(response){
+      //  $('#addFavoritePokemon').modal('hide');
+       this.getFavorites();
+       alert('Pokemon Agregado')
+ 
+     }else{
+       console.log('Pokemon no se pudo agregar')
+     }
   }
 
   resetForm(){
