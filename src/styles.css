@@ -53,6 +53,11 @@ thead {
   min-width: 561px !important;
 }
 
+.imput-m400{
+  max-width: 400px;
+}
+
+
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
